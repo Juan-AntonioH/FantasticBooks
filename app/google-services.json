@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394099361479",
+    "project_id": "fantasticbooks-e4408",
+    "storage_bucket": "fantasticbooks-e4408.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394099361479:android:c64a4f0ae035ea83b0e0e2",
+        "android_client_info": {
+          "package_name": "com.juanhegi.fantasticbooks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGLNKtKi-EvEefbgs_57H-JWUD6je-VA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,4 +22,10 @@
     <style name="Theme.FantasticBooks.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FantasticBooks.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashScreen" parent="Theme.FantasticBooks">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">false</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>

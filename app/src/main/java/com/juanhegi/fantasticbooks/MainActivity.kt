@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Thread.sleep(3000)
+        setTheme(R.style.Theme_FantasticBooks_NoActionBar)
+        //android:theme="@style/Theme.FantasticBooks.NoActionBar">
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

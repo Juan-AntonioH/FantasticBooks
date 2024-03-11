@@ -11,17 +11,21 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
+import androidx.lifecycle.ViewModelProvider
 import com.juanhegi.fantasticbooks.databinding.ActivityMainBinding
+import com.juanhegi.fantasticbooks.ui.users.User
+import com.juanhegi.fantasticbooks.ui.users.UserViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    lateinit var user: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        user = ViewModelProvider(this).get(UserViewModel::class.java)
+        user.user = User.User(1, "Juan")
         Thread.sleep(3000)
         setTheme(R.style.Theme_FantasticBooks_NoActionBar)
         //android:theme="@style/Theme.FantasticBooks.NoActionBar">

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.juanhegi.fantasticbooks.databinding.FragmentSlideshowBinding
+import com.juanhegi.fantasticbooks.ui.users.UserViewModel
 
 class SlideshowFragment : Fragment() {
 
@@ -22,6 +23,8 @@ class SlideshowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val user = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+        user.user = null
         val slideshowViewModel =
             ViewModelProvider(this).get(SlideshowViewModel::class.java)
 

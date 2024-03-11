@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.juanhegi.fantasticbooks.databinding.FragmentGalleryBinding
+import com.juanhegi.fantasticbooks.ui.users.UserViewModel
 
 class GalleryFragment : Fragment() {
 
@@ -22,6 +23,7 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val user = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         val galleryViewModel =
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
@@ -30,7 +32,7 @@ class GalleryFragment : Fragment() {
 
         val textView: TextView = binding.textGallery
         galleryViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+            textView.text = user.user?.name ?:"vacio"
         }
         return root
     }

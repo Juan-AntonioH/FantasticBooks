@@ -1,9 +1,14 @@
 package com.juanhegi.fantasticbooks.ui.service
 
 import android.content.ContentValues.TAG
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.juanhegi.fantasticbooks.ui.user.User
+import java.util.concurrent.CompletableFuture
 
 
 class FirebaseService {
@@ -29,5 +34,43 @@ class FirebaseService {
                 Log.w(TAG, "Error getting documents.", exception)
                 callback(emptyList()) // Llama al callback con una lista vacía en caso de error
             }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun saveUser(newUser: User.User, userId: String): CompletableFuture<Boolean> {
+        val result = CompletableFuture<Boolean>()
+        val db = FirebaseFirestore.getInstance()
+        val userDocument = db.collection("users").document(userId)
+
+        userDocument.set(newUser)
+            .addOnSuccessListener {
+                result.complete(true)
+            }
+            .addOnFailureListener { e ->
+                result.complete(false)
+            }
+        return result
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getUserData(userId: String): CompletableFuture<User.User?> {
+        val result = CompletableFuture<User.User?>()
+        val userDocument = db.collection("users").document(userId)
+
+        userDocument.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val userData = document.toObject(User.User::class.java)
+                    result.complete(userData)
+                } else {
+                    // El documento del usuario no existe
+                    result.complete(null)
+                }
+            }
+            .addOnFailureListener { exception ->
+                result.completeExceptionally(exception)
+            }
+
+        return result
     }
 }

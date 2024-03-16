@@ -9,10 +9,7 @@ import com.juanhegi.fantasticbooks.databinding.FragmentGenreBinding
 import com.juanhegi.fantasticbooks.ui.service.FirebaseService
 import com.squareup.picasso.Picasso
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
+
 class MyGenreRecyclerViewAdapter() : RecyclerView.Adapter<MyGenreRecyclerViewAdapter.ViewHolder>() {
     //private val values: MutableList<Book> = mutableListOf()
     private val firebaseService = FirebaseService()

@@ -27,4 +27,31 @@
         android:name="com.juanhegi.fantasticbooks.ui.genre.GenreFragment"
         android:label="Lista de géneros"
         tools:layout="@layout/fragment_genre_list" />
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.juanhegi.fantasticbooks.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_nav_login_to_passwordRestoreFragment"
+            app:destination="@id/passwordRestoreFragment" />
+        <action
+            android:id="@+id/action_nav_login_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRestoreFragment"
+        android:name="com.juanhegi.fantasticbooks.ui.auth.PasswordRestoreFragment"
+        android:label="Recuperar contraseña"
+        tools:layout="@layout/fragment_password_restore" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.juanhegi.fantasticbooks.ui.auth.RegisterFragment"
+        android:label="Registrarse"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.juanhegi.fantasticbooks.ui.profile.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

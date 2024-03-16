@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.juanhegi.fantasticbooks.databinding.FragmentSlideshowBinding
-import com.juanhegi.fantasticbooks.ui.users.UserViewModel
+import com.juanhegi.fantasticbooks.ui.user.UserViewModel
 
 class SlideshowFragment : Fragment() {
 

@@ -38,11 +38,6 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
         loadingDialog = createLoadingDialog()
         user = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
-        Toast.makeText(
-            requireContext(),
-            user.user?.name.toString(),
-            Toast.LENGTH_SHORT
-        ).show()
     }
 
     override fun onCreateView(

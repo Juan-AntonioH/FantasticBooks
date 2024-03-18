@@ -1,13 +1,15 @@
 package com.juanhegi.fantasticbooks.ui.auth
 
+
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -16,13 +18,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.juanhegi.fantasticbooks.MainActivity
 import com.juanhegi.fantasticbooks.R
 import com.juanhegi.fantasticbooks.ui.service.FirebaseService
-import com.juanhegi.fantasticbooks.ui.user.User
 import com.juanhegi.fantasticbooks.ui.user.UserViewModel
+
 
 class LoginFragment : Fragment() {
     lateinit var loadingDialog: Dialog
@@ -52,7 +56,6 @@ class LoginFragment : Fragment() {
         mforgetPassword = view.findViewById(R.id.txtForgetPassword)
         mregister = view.findViewById(R.id.txtRegister)
         mbtnLogin = view.findViewById(R.id.btnLogin)
-
 
         return view
     }
@@ -94,6 +97,8 @@ class LoginFragment : Fragment() {
                                             "Inicio de sesión correcto.",
                                             Toast.LENGTH_SHORT
                                         ).show()
+                                        val mainActivity = requireActivity() as MainActivity
+                                        mainActivity.login()
                                         Handler(Looper.getMainLooper()).postDelayed({
                                             findNavController().popBackStack(R.id.nav_home, false)
                                         }, 500)
@@ -121,6 +126,7 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_login_to_passwordRestoreFragment)
         }
     }
+
 
     private fun showAlert(errors: String) {
         val builder = AlertDialog.Builder(requireContext())

@@ -29,15 +29,11 @@
             android:icon="@drawable/ic_menu_login"
             android:title="Login" />
         <item
-            android:id="@+id/menu_nav_logout"
+            android:id="@+id/nav_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_menu_logout"
-            android:title="nav_logout" />
-        <item
-            android:id="@+id/nav_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:title="Perfil" />
+            android:visible="true"
+            android:title="Logout" />
     </group>
 </menu>

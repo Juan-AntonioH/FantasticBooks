@@ -6,10 +6,10 @@ import com.google.type.Date
 object User {
     data class User(
         val document: String = "",
-        val name: String = "",
-        val lastname: String = "",
+        var name: String = "",
+        var lastname: String = "",
         val email: String = "",
-        val imageUrl: String? = null,
+        var imageUrl: String? = null,
         val sanction: Timestamp? = null,
         val dischargeDate: Timestamp = Timestamp.now(), // Convertir LocalDate.now() a Timestamp
         val rol: String = "",

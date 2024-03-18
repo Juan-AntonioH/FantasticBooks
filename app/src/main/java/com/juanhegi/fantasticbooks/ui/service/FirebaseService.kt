@@ -53,6 +53,27 @@ class FirebaseService {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
+    fun updateUser(user: User.User):CompletableFuture<Boolean>{
+        val result = CompletableFuture<Boolean>()
+        val db = FirebaseFirestore.getInstance()
+        val userDocument = db.collection("users").document(user.document)
+        val updates = mutableMapOf<String, Any>()
+
+        user.name?.let { updates["name"] = it }
+        user.lastname?.let { updates["lastname"] = it }
+        user.imageUrl?.let { updates["imageUrl"] = it }
+
+        userDocument.update(updates)
+            .addOnSuccessListener {
+                result.complete(true)
+            }
+            .addOnFailureListener { e ->
+                result.complete(false)
+            }
+        return result
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
     fun getUserData(userId: String): CompletableFuture<User.User?> {
         val result = CompletableFuture<User.User?>()
         val userDocument = db.collection("users").document(userId)

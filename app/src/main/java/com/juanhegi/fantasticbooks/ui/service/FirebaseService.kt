@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.juanhegi.fantasticbooks.ui.books.BookItem
 import com.juanhegi.fantasticbooks.ui.user.User
 import java.util.concurrent.CompletableFuture
 
@@ -36,6 +37,27 @@ class FirebaseService {
             }
     }
 
+    fun getBooksByGenre(genre: String, callback: (List<BookItem.Book>) -> Unit) {
+        val bookList = mutableListOf<BookItem.Book>()
+        db.collection("books")
+            .whereEqualTo("genre", genre.lowercase())
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val book = document.toObject(BookItem.Book::class.java)
+                    if (book != null) {
+                        Log.d(TAG, book.imagenSrc)
+                        bookList.add(book)
+                    }
+                }
+                callback(bookList)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+                callback(emptyList()) // Llama al callback con una lista vacía en caso de error
+            }
+    }
+
     @RequiresApi(Build.VERSION_CODES.N)
     fun saveUser(newUser: User.User, userId: String): CompletableFuture<Boolean> {
         val result = CompletableFuture<Boolean>()
@@ -53,7 +75,7 @@ class FirebaseService {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun updateUser(user: User.User):CompletableFuture<Boolean>{
+    fun updateUser(user: User.User): CompletableFuture<Boolean> {
         val result = CompletableFuture<Boolean>()
         val db = FirebaseFirestore.getInstance()
         val userDocument = db.collection("users").document(user.document)

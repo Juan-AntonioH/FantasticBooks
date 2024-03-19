@@ -26,7 +26,11 @@
         android:id="@+id/nav_genre"
         android:name="com.juanhegi.fantasticbooks.ui.genre.GenreFragment"
         android:label="Lista de géneros"
-        tools:layout="@layout/fragment_genre_list" />
+        tools:layout="@layout/fragment_genre_list" >
+        <action
+            android:id="@+id/action_nav_genre_to_bookFragmentList"
+            app:destination="@id/bookFragmentList" />
+    </fragment>
     <fragment
         android:id="@+id/nav_login"
         android:name="com.juanhegi.fantasticbooks.ui.auth.LoginFragment"
@@ -54,4 +58,9 @@
         android:name="com.juanhegi.fantasticbooks.ui.profile.ProfileFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/bookFragmentList"
+        android:name="com.juanhegi.fantasticbooks.ui.books.bookFragment"
+        android:label="Lista por genero"
+        tools:layout="@layout/fragment_book_list" />
 </navigation>

@@ -1,16 +1,19 @@
 package com.juanhegi.fantasticbooks.ui.genre
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.juanhegi.fantasticbooks.R
 import com.juanhegi.fantasticbooks.databinding.FragmentGenreBinding
 import com.juanhegi.fantasticbooks.ui.service.FirebaseService
 import com.squareup.picasso.Picasso
 
 
-class MyGenreRecyclerViewAdapter() : RecyclerView.Adapter<MyGenreRecyclerViewAdapter.ViewHolder>() {
+class MyGenreRecyclerViewAdapter(private val navController: NavController) : RecyclerView.Adapter<MyGenreRecyclerViewAdapter.ViewHolder>() {
     //private val values: MutableList<Book> = mutableListOf()
     private val firebaseService = FirebaseService()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +39,14 @@ class MyGenreRecyclerViewAdapter() : RecyclerView.Adapter<MyGenreRecyclerViewAda
                 Picasso.get().load(imageUrls[1]).into(holder.mPortada2)
                 Picasso.get().load(imageUrls[2]).into(holder.mPortada3)
                 Picasso.get().load(imageUrls[3]).into(holder.mPortada4)
+            }
+            holder.itemView.setTag(genre)
+            holder.itemView.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putString("genero", genre)
+                }
+
+                navController.navigate(R.id.action_nav_genre_to_bookFragmentList, bundle)
             }
         }
     }

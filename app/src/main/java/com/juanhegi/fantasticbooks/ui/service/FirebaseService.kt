@@ -17,6 +17,7 @@ import java.util.concurrent.CompletableFuture
 
 class FirebaseService {
     private val db = Firebase.firestore
+
     //////////////////
     // Zona libros //
     /////////////////
@@ -38,7 +39,7 @@ class FirebaseService {
                 callback(listImagesUrl)
             }
             .addOnFailureListener { exception ->
-              //  Log.w(TAG, "Error getting documents.", exception)
+                //  Log.w(TAG, "Error getting documents.", exception)
                 callback(emptyList()) // Llama al callback con una lista vacía en caso de error
             }
     }
@@ -60,9 +61,31 @@ class FirebaseService {
                 callback(bookList)
             }
             .addOnFailureListener { exception ->
-               // Log.w(TAG, "Error getting documents.", exception)
+                // Log.w(TAG, "Error getting documents.", exception)
                 callback(emptyList()) // Llama al callback con una lista vacía en caso de error
             }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getFavoriteBooks(bookIds: List<Int>?, callback: (List<BookItem.Book>) -> Unit) {
+        val favoriteBooks = mutableListOf<BookItem.Book>()
+        if (bookIds != null && bookIds.isNotEmpty()) { // Verifica que bookIds no sea nulo ni esté vacío
+            db.collection("books")
+                .whereIn("id", bookIds)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        val book = document.toObject(BookItem.Book::class.java)
+                        favoriteBooks.add(book)
+                    }
+                    callback(favoriteBooks)
+                }
+                .addOnFailureListener {
+                    callback(emptyList())
+                }
+        } else {
+            callback(emptyList())
+        }
     }
 
     fun getBooksById(id: Int, callback: (BookItem.Book?) -> Unit) {
@@ -78,7 +101,7 @@ class FirebaseService {
                 callback(book)
             }
             .addOnFailureListener { exception ->
-               // Log.e(TAG, "Error getting documents", exception)
+                // Log.e(TAG, "Error getting documents", exception)
                 callback(null) // Llamamos al callback con null para indicar un error
             }
     }
@@ -113,7 +136,7 @@ class FirebaseService {
                             result.complete(true)
                         }
                         .addOnFailureListener { e ->
-                           // Log.e(TAG, "Error adding document", e)
+                            // Log.e(TAG, "Error adding document", e)
                             result.complete(false)
                         }
                 }
@@ -142,7 +165,7 @@ class FirebaseService {
                             }
                     } else {
                         // El libro con el id dado no existe
-                      //  Log.e(TAG, "Book with ID ${book.id} not found")
+                        //  Log.e(TAG, "Book with ID ${book.id} not found")
                         result.complete(false)
                     }
                 }
@@ -154,6 +177,7 @@ class FirebaseService {
 
         return result
     }
+
 
     //////////////////
     // Zona usuario //
@@ -279,7 +303,7 @@ class FirebaseService {
         val result = CompletableFuture<Lend.LendBook?>()
         db.collection("lend")
             .whereEqualTo("bookId", id)
-            .orderBy( "loanDate",Query.Direction.DESCENDING)
+            .orderBy("loanDate", Query.Direction.DESCENDING)
             .limit(1)
             .get()
             .addOnSuccessListener { documents ->

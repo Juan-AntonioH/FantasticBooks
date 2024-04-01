@@ -1,7 +1,6 @@
 package com.juanhegi.fantasticbooks.ui.user
 
 import com.google.firebase.Timestamp
-import com.google.type.Date
 
 object User {
     data class User(
@@ -10,9 +9,10 @@ object User {
         var lastname: String = "",
         val email: String = "",
         var imageUrl: String? = null,
-        val sanction: Timestamp? = null,
-        val dischargeDate: Timestamp = Timestamp.now(), // Convertir LocalDate.now() a Timestamp
+        var sanction: Timestamp? = null,
+        val dischargeDate: Timestamp = Timestamp.now(),
         val rol: String = "",
-        val delete: Boolean = false
+        val delete: Boolean = false,
+        var favorites: List<Int> = emptyList()
     )
 }

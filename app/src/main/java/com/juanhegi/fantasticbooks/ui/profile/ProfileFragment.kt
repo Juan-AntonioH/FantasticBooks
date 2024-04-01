@@ -54,9 +54,7 @@ class ProfileFragment : Fragment() {
     private var uri: Uri? = null
     lateinit var loadingDialog: Dialog
     lateinit var user: UserViewModel
-    private val firebaseService = FirebaseService()
     private lateinit var storageReference: StorageReference
-    val authFunction: AuthFunction = AuthFunction()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         user = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)

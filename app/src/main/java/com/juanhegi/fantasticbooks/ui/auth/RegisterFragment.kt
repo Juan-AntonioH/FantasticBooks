@@ -29,7 +29,6 @@ import com.juanhegi.fantasticbooks.databinding.FragmentRegisterBinding
 import com.juanhegi.fantasticbooks.ui.service.FirebaseService
 import com.juanhegi.fantasticbooks.ui.user.User
 import java.io.InputStream
-import java.time.LocalDate
 
 class RegisterFragment : Fragment() {
     private val PICK_IMAGE_REQUEST = 1
@@ -173,7 +172,7 @@ class RegisterFragment : Fragment() {
                 document = userId,
                 name = binding.nameRegister.text.toString(),
                 lastname = binding.lastnameRegister.text.toString(),
-                email = binding.emailRegister.text.toString(),
+                email = binding.emailRegister.text.toString().lowercase(),
                 imageUrl = imageUrl,
                 sanction = null,
                 dischargeDate = Timestamp.now(), // Fecha actual

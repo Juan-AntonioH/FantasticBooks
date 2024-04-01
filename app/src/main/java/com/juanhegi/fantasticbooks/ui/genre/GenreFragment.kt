@@ -17,6 +17,7 @@ import com.juanhegi.fantasticbooks.R
 class GenreFragment : Fragment() {
 
     private var columnCount = 1
+
     //private val genreImageUrls: MutableMap<String, Array<String>> = HashMap()
     //private val firebaseService = FirebaseService()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,10 +50,8 @@ class GenreFragment : Fragment() {
 
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
             GenreFragment().apply {

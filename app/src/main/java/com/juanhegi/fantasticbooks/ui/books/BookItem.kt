@@ -2,18 +2,18 @@ package com.juanhegi.fantasticbooks.ui.books
 
 object BookItem {
     data class Book(
-        val id: Int = 0,
-        val title: String = "",
-        val author: String = "",
-        val genre: String = "",
-        val isbn: String = "",
-        val datePublication: String = "",
-        val publisher: String = "",
-        val description: String = "",
-        val numPages: Int = 0,
-        val imagenSrc: String = "",
-        val available: Boolean = true,
-        val removed: Boolean = false
+        var id: Int = 0,
+        var title: String = "",
+        var author: String = "",
+        var genre: String = "",
+        var isbn: String = "",
+        var datePublication: String = "",
+        var publisher: String = "",
+        var description: String = "",
+        var numPages: Int = 0,
+        var imagenSrc: String = "",
+        var available: Boolean = true,
+        var removed: Boolean = false
     )
 
 }

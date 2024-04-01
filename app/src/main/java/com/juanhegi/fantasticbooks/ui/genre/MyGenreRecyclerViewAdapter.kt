@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso
 
 
 class MyGenreRecyclerViewAdapter(private val navController: NavController) : RecyclerView.Adapter<MyGenreRecyclerViewAdapter.ViewHolder>() {
-    //private val values: MutableList<Book> = mutableListOf()
     private val firebaseService = FirebaseService()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

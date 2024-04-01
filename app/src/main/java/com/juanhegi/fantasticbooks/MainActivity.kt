@@ -20,13 +20,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.juanhegi.fantasticbooks.databinding.ActivityMainBinding
 import com.juanhegi.fantasticbooks.ui.user.UserViewModel
 import com.squareup.picasso.Picasso
 
-class MainActivity : AppCompatActivity(){
-
-    private var menu: Menu? = null
+class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var user: UserViewModel
@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(){
     private lateinit var email: TextView
     private lateinit var image: ImageView
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var addBook: FloatingActionButton
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +51,8 @@ class MainActivity : AppCompatActivity(){
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
-
+        addBook = binding.appBarMain.addBook
+        addBook.isVisible = false
         drawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -89,16 +91,8 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        this.menu = menu
-        menu.setGroupVisible(0, false)
-        return true
-    }
-
-    fun getMenu(): Menu? {
-        return this.menu
+    fun getFab(): FloatingActionButton? {
+        return this.addBook
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -116,6 +110,8 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun logOut() {
+        FirebaseAuth.getInstance().signOut()
+        user.user = null
         profileButton.isVisible = false
         fullname.text = "Usuario sin registrar"
         email.text = "FantasticBooks@ejemplo.com"
@@ -136,29 +132,6 @@ class MainActivity : AppCompatActivity(){
             Picasso.get().load(user.user?.imageUrl).into(image)
         }
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        return when (item.itemId) {
-            R.id.action_edit ->{
-                Toast.makeText(this,"editar", Toast.LENGTH_SHORT).show()
-                true
-            }
 
-            R.id.action_lend ->{
-                Toast.makeText(this,"prestar", Toast.LENGTH_SHORT).show()
-                true
-            }
-            R.id.action_return ->{
-                Toast.makeText(this,"devolver", Toast.LENGTH_SHORT).show()
-                true
-            }
-            R.id.action_delete ->{
-                Toast.makeText(this,"eliminar", Toast.LENGTH_SHORT).show()
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-        return true
-    }
 }

@@ -60,7 +60,28 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/bookFragmentList"
-        android:name="com.juanhegi.fantasticbooks.ui.books.bookFragment"
+        android:name="com.juanhegi.fantasticbooks.ui.books.BookFragment"
         android:label="Lista por genero"
-        tools:layout="@layout/fragment_book_list" />
+        tools:layout="@layout/fragment_book_list" >
+        <action
+            android:id="@+id/action_bookFragmentList_to_book_detail"
+            app:destination="@id/book_detail" />
+        <action
+            android:id="@+id/action_bookFragmentList_to_bookSaveUpdate"
+            app:destination="@id/bookSaveUpdate" />
+    </fragment>
+    <fragment
+        android:id="@+id/book_detail"
+        android:name="com.juanhegi.fantasticbooks.ui.books.Book_detail"
+        android:label="Detalles Libro"
+        tools:layout="@layout/fragment_book_detail">
+        <action
+            android:id="@+id/action_book_detail_to_bookSaveUpdate"
+            app:destination="@id/bookSaveUpdate" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookSaveUpdate"
+        android:name="com.juanhegi.fantasticbooks.ui.books.BookSaveUpdate"
+        android:label="fragment_book_save_update"
+        tools:layout="@layout/fragment_book_save_update" />
 </navigation>

@@ -1,16 +1,20 @@
 package com.juanhegi.fantasticbooks.ui.books
 
+import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import com.juanhegi.fantasticbooks.R
 
 import com.juanhegi.fantasticbooks.databinding.FragmentBookBinding
 import com.squareup.picasso.Picasso
 
 class MybookRecyclerViewAdapter(
-    private val values: List<BookItem.Book>
+    private val values: List<BookItem.Book>,
+    private val navController: NavController
 ) : RecyclerView.Adapter<MybookRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +34,14 @@ class MybookRecyclerViewAdapter(
         holder.title.text = item.title
         if (item.imagenSrc.isNotEmpty()) {
             Picasso.get().load(item.imagenSrc).into(holder.image)
+        }
+        holder.itemView.setTag(item.id)
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle().apply {
+                putInt("book", item.id)
+            }
+
+            navController.navigate(R.id.action_bookFragmentList_to_book_detail, bundle)
         }
     }
 

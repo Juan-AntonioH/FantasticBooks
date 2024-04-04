@@ -178,6 +178,26 @@ class FirebaseService {
         return result
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getSearchBooks(type: String, text: String, callback: (List<BookItem.Book>) -> Unit) {
+        val searchBooks = mutableListOf<BookItem.Book>()
+        db.collection("books")
+            .whereGreaterThanOrEqualTo(type, text)
+            .whereLessThanOrEqualTo(type, text + "\uf8ff") // \uf8ff es el último carácter Unicode
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val book = document.toObject(BookItem.Book::class.java)
+                    if (book != null) {
+                        searchBooks.add(book)
+                    }
+                }
+                callback(searchBooks)
+            }
+            .addOnFailureListener { exception ->
+                callback(emptyList())
+            }
+    }
 
     //////////////////
     // Zona usuario //

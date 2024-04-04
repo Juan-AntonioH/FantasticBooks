@@ -10,7 +10,7 @@ object BookItem {
         var datePublication: String = "",
         var publisher: String = "",
         var description: String = "",
-        var numPages: Int = 0,
+        var numPages: Int? = 0,
         var imagenSrc: String = "",
         var available: Boolean = true,
         var removed: Boolean = false

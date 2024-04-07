@@ -34,7 +34,7 @@ class MyfavoriteRecyclerViewAdapter(
         val item = values[position]
         holder.author.text = item.author
         holder.title.text = item.title
-        if (item.imagenSrc.isNotEmpty()) {
+        if (item.imagenSrc!!.isNotEmpty()) {
             Picasso.get().load(item.imagenSrc).into(holder.image)
         }
         holder.itemView.tag = item.id

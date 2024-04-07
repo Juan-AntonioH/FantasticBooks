@@ -11,7 +11,7 @@ object BookItem {
         var publisher: String = "",
         var description: String = "",
         var numPages: Int? = 0,
-        var imagenSrc: String = "",
+        var imagenSrc: String? = "",
         var available: Boolean = true,
         var removed: Boolean = false
     )

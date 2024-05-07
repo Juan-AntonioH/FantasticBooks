@@ -81,11 +81,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:ems="10"
+                android:ems="7"
                 android:paddingLeft="10dp"
                 android:text="Disponibilidad:"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/avaliabeBookDetail"
@@ -115,7 +115,7 @@
                 android:paddingBottom="10dp"
                 android:text="Número de páginas:"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/numPagesBookDetail"
@@ -144,7 +144,7 @@
                 android:paddingLeft="10dp"
                 android:text="Fecha de publicación:"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/dateBookDetail"
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:ems="10"
+                android:ems="7"
                 android:paddingLeft="10dp"
                 android:text="Descripción"
                 android:textColor="@color/white"
